@@ -65,7 +65,7 @@ int main(int argc, char* argv[]) {
                 printf("TCP DATA LENGTH: %d\n", data_length);
                 packet += tcp_header->th_off * 4;
                 
-                if (data_length > 15) data_length = 15;
+                if (data_length > 16) data_length = 16;
                 printf("TCP DATA: ");
                 for(int i = 0; i < data_length; i++)
                     printf("%x ", packet[i]);
