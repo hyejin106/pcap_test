@@ -46,16 +46,17 @@ int main(int argc, char* argv[]) {
         printMAC("Ethernet DMAC", eth_header->ether_dhost);
         printf("Ethernet TYPE: %04x\n", ntohs(eth_header->ether_type));
         
-        packet += sizeof(struct ether_header);
 
         if(ntohs(eth_header->ether_type) == ETHERTYPE_IP) {
+            packet += sizeof(struct ether_header);
+
             struct ip* ip_header = (ip *)packet;
             printf("IP SIP: %s\n", inet_ntoa(ip_header->ip_src));
             printf("IP DIP: %s\n", inet_ntoa(ip_header->ip_dst));
 
-            packet += ip_header->ip_hl * 4;
-
             if(ip_header->ip_p == IPPROTO_TCP) {
+                packet += ip_header->ip_hl * 4;
+
                 struct tcphdr* tcp_header = (tcphdr *)packet;
                 printf("TCP SPORT: %d\n", ntohs(tcp_header->th_sport));
                 printf("TCP DPORT: %d\n", ntohs(tcp_header->th_dport));
