@@ -61,7 +61,7 @@ int main(int argc, char* argv[]) {
                 printf("TCP SPORT: %d\n", ntohs(tcp_header->th_sport));
                 printf("TCP DPORT: %d\n", ntohs(tcp_header->th_dport));
 
-                int data_length = header->caplen - sizeof(struct ether_header) - ip_header->ip_hl*4 - tcp_header->th_off*4;
+                int data_length = ip_header->ip_len - sizeof(struct ether_header) - ip_header->ip_hl*4 - tcp_header->th_off*4;
                 printf("TCP DATA LENGTH: %d\n", data_length);
                 packet += tcp_header->th_off * 4;
                 
