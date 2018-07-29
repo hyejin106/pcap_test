@@ -68,7 +68,7 @@ int main(int argc, char* argv[]) {
                 if (data_length > 16) data_length = 16;
                 printf("TCP DATA: ");
                 for(int i = 0; i < data_length; i++)
-                    printf("%x ", packet[i]);
+                    printf("%02x ", packet[i]);
             }
         }
     }
